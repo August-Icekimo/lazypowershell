@@ -1,0 +1,16 @@
+<Configuration>
+<SyncPair>
+<Source>C:\synctest\source1</Source>
+<Target>C:\synctest\dest1</Target>
+<Target>C:\synctest\dest2</Target>
+<Filter>*.txt</Filter>
+<ExceptionList>
+<Exception>*p234*.txt</Exception>
+</ExceptionList>
+</SyncPair>
+<SyncPair>
+<Source>C:\synctest\source2</Source>
+<Target>C:\synctest\dest2</Target>
+<Filter>*.txt</Filter>
+</SyncPair>
+</Configuration>
