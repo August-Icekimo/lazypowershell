@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc//DTD JNLP Descriptor 6.0//EN" "http://java.sun.com/dtd/JNLP-6.0.dtd">
+<jnlp 	spec="6.0+" codebase="https://prod.agmednet.net/desktop-jnlp" href="launch.jnlp?ssotoken=" version="7.9">  
+      
+    <information>
+        <title>AG Mednet Desktop Agent</title>
+        
+        <vendor>AG Mednet, Inc.</vendor>
+        <homepage href="http://www.agmednet.com"/>
+
+        <description>AG Mednet Desktop Agent</description>
+        <description kind="short">AG Mednet Desktop Agent</description>
+        <description kind="one-line">AG Mednet Desktop Agent</description>
+        <description kind="tooltip">Desktop Agent</description>
+
+        <icon href="agmednetIcon.png" kind="default" width="48" height="48"/>
+        <icon href="splashScreen.jpg" kind="splash"/>
+        
+        <shortcut>
+            <desktop/>
+            <menu submenu="AGMednet DICOM Application"/>
+        </shortcut>
+
+    </information>
+    
+    <security>
+        <all-permissions/>
+    </security>
+        
+    <update check="always" policy="always"/>
+
+    <resources>
+
+    	<jar href="lib/desktop-agent-jar-7.9.jar" main="true" download="eager"/>
+    	<jar href="lib/common-sqc-1.0.1.jar" download="eager"/>
+    	<jar href="lib/jaxb-api-2.2.jar" download="eager"/>
+    	<jar href="lib/stax-api-1.0-2.jar" download="eager"/>
+    	<jar href="lib/activation-1.1.jar" download="eager"/>
+    	<jar href="lib/common-sso-1.0.3.jar" download="eager"/>
+    	<jar href="lib/junit-dep-4.9.jar" download="eager"/>
+    	<jar href="lib/hamcrest-core-1.1.jar" download="eager"/>
+    	<jar href="lib/hamcrest-all-1.3.jar" download="eager"/>
+    	<jar href="lib/common-util-jaxb-1.0.0.jar" download="eager"/>
+    	<jar href="lib/common-security-1.0.0-20190320.163749-1.jar" download="eager"/>
+    	<jar href="lib/common-model-1.0.3-20190320.164033-1.jar" download="eager"/>
+    	<jar href="lib/common-util-1.0.0-20190320.164231-1.jar" download="eager"/>
+    	<jar href="lib/postgresql-8.1-404.jdbc3.jar" download="eager"/>
+    	<jar href="lib/commons-configuration-1.9.jar" download="eager"/>
+    	<jar href="lib/commons-logging-1.1.1.jar" download="eager"/>
+    	<jar href="lib/commons-io-2.4.jar" download="eager"/>
+    	<jar href="lib/agmednet.common.ejb-3.2.7.jar" download="eager"/>
+    	<jar href="lib/swingx-1.6.1.jar" download="eager"/>
+    	<jar href="lib/filters-2.0.235.jar" download="eager"/>
+    	<jar href="lib/swing-worker-1.1.jar" download="eager"/>
+    	<jar href="lib/jxlayer-3.0.4-unsigned.jar" download="eager"/>
+    	<jar href="lib/appframework-1.0.3p1AGM.jar" download="eager"/>
+    	<jar href="lib/dcm4che-net-2.0.25.jar" download="eager"/>
+    	<jar href="lib/dcm4che-imageio-2.0.25.jar" download="eager"/>
+    	<jar href="lib/dcm4che-image-2.0.25.jar" download="eager"/>
+    	<jar href="lib/dcm4che-iod-2.0.25.jar" download="eager"/>
+    	<jar href="lib/dcm4che-core-2.0.25.jar" download="eager"/>
+    	<jar href="lib/commons-lang-2.3.jar" download="eager"/>
+    	<jar href="lib/commons-collections-3.2.1.jar" download="eager"/>
+    	<jar href="lib/beansbinding-1.2.1.jar" download="eager"/>
+    	<jar href="lib/validation-2.0.1.jar" download="eager"/>
+    	<jar href="lib/dcm4che-audit-2.0.25.jar" download="eager"/>
+    	<jar href="lib/slf4j-log4j12-1.6.4.jar" download="eager"/>
+    	<jar href="lib/slf4j-api-1.6.4.jar" download="eager"/>
+    	<jar href="lib/log4j-1.2.16.jar" download="eager"/>
+    	<jar href="lib/jbossall-client-4.2.3.GA.jar" download="eager"/>
+    	<jar href="lib/openjpa-2.2.0.jar" download="eager"/>
+    	<jar href="lib/serp-1.13.1.jar" download="eager"/>
+    	<jar href="lib/geronimo-jms_1.1_spec-1.1.1.jar" download="eager"/>
+    	<jar href="lib/geronimo-jta_1.1_spec-1.1.1.jar" download="eager"/>
+    	<jar href="lib/commons-pool-1.5.4.jar" download="eager"/>
+    	<jar href="lib/asm-3.2.jar" download="eager"/>
+    	<jar href="lib/bfopdf-license-20110810.jar" download="eager"/>
+    	<jar href="lib/bfopdf-work-20150123.jar" download="eager"/>
+    	<jar href="lib/jnlp-1.6.0_22.jar" download="eager"/>
+    	<jar href="lib/derby-10.5.3.0_1.jar" download="eager"/>
+    	<jar href="lib/jai_imageio-1.2-pre-dr-b05.jar" download="eager"/>
+    	<jar href="lib/commons-codec-1.6.jar" download="eager"/>
+    	<jar href="lib/jai_codec-1.1.3.jar" download="eager"/>
+    	<jar href="lib/jai_core-1.1.3.jar" download="eager"/>
+    	<jar href="lib/swing-outline-6.5.1.jar" download="eager"/>
+    	<jar href="lib/dcm-1.1.4.jar" download="eager"/>
+    	<jar href="lib/aspectjrt-1.6.11.jar" download="eager"/>
+    	<jar href="lib/eventbus-1.4.jar" download="eager"/>
+    	<jar href="lib/task-dialog-1.3.5.jar" download="eager"/>
+    	<jar href="lib/miglayout-3.7.4.jar" download="eager"/>
+    	<jar href="lib/gdcm-3.0.1.jar" download="eager"/>
+    	<jar href="lib/jaxb-impl-2.1.13.jar" download="eager"/>
+    	<jar href="lib/drools-compiler-5.3.0.Final.jar" download="eager"/>
+    	<jar href="lib/antlr-runtime-3.3.jar" download="eager"/>
+    	<jar href="lib/antlr-3.3.jar" download="eager"/>
+    	<jar href="lib/stringtemplate-3.2.1.jar" download="eager"/>
+    	<jar href="lib/antlr-2.7.6.jar" download="eager"/>
+    	<jar href="lib/ecj-4.3.1.jar" download="eager"/>
+    	<jar href="lib/mvel2-2.1.0.drools4.jar" download="eager"/>
+    	<jar href="lib/knowledge-api-5.3.0.Final.jar" download="eager"/>
+    	<jar href="lib/drools-core-5.3.0.Final.jar" download="eager"/>
+    	<jar href="lib/jackson-core-2.8.6.jar" download="eager"/>
+    	<jar href="lib/jackson-annotations-2.8.6.jar" download="eager"/>
+    	<jar href="lib/jackson-databind-2.8.6.jar" download="eager"/>
+    	<jar href="lib/spring-web-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/spring-aop-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/spring-beans-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/spring-context-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/spring-expression-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/spring-core-4.3.6.RELEASE.jar" download="eager"/>
+    	<jar href="lib/gson-2.8.2.jar" download="eager"/>
+    	<jar href="lib/common-image-3.4-20180514.195521-2.jar" download="eager"/>
+    	<jar href="lib/common-io-3.4-20180514.195516-2.jar" download="eager"/>
+    	<jar href="lib/common-lang-3.4-20180514.195510-2.jar" download="eager"/>
+    	<jar href="lib/imageio-core-3.4-20180514.195533-2.jar" download="eager"/>
+    	<jar href="lib/imageio-jpeg-3.4-20180514.195620-2.jar" download="eager"/>
+    	<jar href="lib/imageio-metadata-3.4-20180514.195537-2.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-ws-7.9.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-clinicaltrials-7.9.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-deidentification-7.9.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-pixel-deidentification-7.9.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-forms-7.9.jar" download="eager"/>
+    	<jar href="lib/core-1.0.5.jar" download="eager"/>
+    	<jar href="lib/geronimo-jpa_2.0_spec-1.0.jar" download="eager"/>
+    	<jar href="lib/desktop-agent-upload-7.9.jar" download="eager"/>
+    	<jar href="lib/vh-1.0.1.jar" download="eager"/>
+    	<jar href="lib/attachments-1.0.0.jar" download="eager"/>
+        
+        <property name="jnlp.com.agmednet.home"
+            value="agmdesktop"/>
+        <property name="jnlp.com.agmednet.ws.portal.url"
+            value="https://prod.agmednet.net"/>
+        <property name="jnlp.com.agmednet.core.jndi.url"
+            value="https://prod-core.agmednet.net/invoker/JNDIFactorySSL"/>
+		<property name="jnlp.com.agmednet.timeout"
+			value="15"/>
+		<property name="jnlp.com.agmednet.sso.url"
+			value="https://judi-auth.agmednet.net:443/sso"/>
+    </resources>
+
+	<resources os="Windows" arch="x86">
+		<java version="1.6+" href="http://java.sun.com/products/autodl/j2se" initial-heap-size="64m" max-heap-size="512m" java-vm-args="-XX:MaxPermSize=256m" />
+    	<nativelib href="lib/gdcm-win32-nativelibs-3.0.1-native-win32.jar" download="eager"/>
+	</resources>
+
+	<!-- Java incorrectly identifies all 64-bit Windows architecture as amd64 -->
+	<resources os="Windows\ 7 Windows" arch="amd64 64bit x86_64">
+		<java version="1.6+" href="http://java.sun.com/products/autodl/j2se" initial-heap-size="64m" max-heap-size="512m" java-vm-args="-XX:MaxPermSize=256m" />
+    	<nativelib href="lib/gdcm-win64-nativelibs-3.0.1-native-win64.jar" download="eager"/>
+	</resources>
+
+
+	<resources os="Mac\ OS\ X" arch="x86_64">
+		<java version="1.6+" href="http://java.sun.com/products/autodl/j2se" initial-heap-size="64m" max-heap-size="512m" />
+    	<nativelib href="lib/gdcm-osx-nativelibs-1.1.0-native-osx.jar" download="eager"/>
+	</resources>
+
+    <application-desc main-class="com.agmednet.DicomUploadApp">
+    	<argument>ssotoken=</argument>
+    	
+    </application-desc>
+</jnlp>
