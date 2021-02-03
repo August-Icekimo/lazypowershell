@@ -29,10 +29,8 @@ sudo chmod a+rx /usr/local/bin/youtube-dl
 
 # Install OpenShot
 sudo add-apt-repository ppa:openshot.developers/ppa -y
-sudo apt update && sudo apt install -y openshot-qt
-# Install Other Openshot Goodfriends
-# Blender Inkscape & GIMP
-sudo apt install -y blender inkscape gimp
+sudo apt update && sudo apt install -y openshot-qt blender inkscape gimp
+# Also Install Other Openshot Goodfriends: Blender Inkscape & GIMP
 # Install GIMP another way
 # sudo add-apt-repository -y ppa:otto-kesselgulasch/gimp
 # sudo apt install ppa-purge && sudo ppa-purge ppa:otto-kesselgulasch/gimp
@@ -52,3 +50,5 @@ sudo apt update && sudo apt install -y obs-studio
 # tar xvf amdgpu-pro-20.20-1098277-ubuntu-20.04.tar 
 # cd amdgpu-pro-20.20-1098277-ubuntu-20.04/;ls
 # ./amdgpu-install --opencl=pal,legacy
+sudo add-apt-repository ppa:ubuntubudgie/backports && sudo apt-get update
+sudo apt install -y mojave-gtk-theme fcitx-chewing
