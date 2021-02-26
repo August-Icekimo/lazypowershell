@@ -1,0 +1,16 @@
+[Unit]
+Description=RClone Mount Onedrive
+ConditionPathExists=|/usr/bin
+After=network.target
+
+[Service]
+User=icekimo
+# First trial, rclone mount 1-liner
+ExecStart=/usr/bin/rclone mount OneDrive: /home/icekimo/Documents/OneDrive
+
+# Restart every >2 seconds to avoid StartLimitInterval failure
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
