@@ -18,6 +18,17 @@ docker run --name jenkins-docker --rm --detach \
   --volume jenkins-data:$jenkinsDataVol \
   --publish 2376:2376 docker:dind
 
+# Homebrew jenkins LTS + blueocean
+# https://hub.docker.com/repository/docker/icekimo/jenkins/general
+# No autobuild , due to dockerhub "一夜兩次郎" polocy.
+docker run --name jenkins-blueocean --rm --detach \
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
+  --env DOCKER_CERT_PATH=$DOCKER_TLS_CERTDIR_PATH --env DOCKER_TLS_VERIFY=1 \
+  --publish 8080:8080 --publish 50000:50000 \
+  --volume jenkins-data:$jenkinsDataVol \
+  --volume jenkins-docker-certs:$jenkinsCertsVol:ro \
+  icekimo/jenkins:latest
+
 # Post Install 
 # https://www.jenkins.io/doc/book/installing/docker/#setup-wizard
 
