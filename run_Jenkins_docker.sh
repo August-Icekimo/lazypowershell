@@ -24,7 +24,7 @@ fi
 
 # Run the jenkins docker for first step
 echo "Step 1: Start Jenkins Docker IN Docker."
-docker run --name jenkins-docker --rm --detach \
+docker run --name jenkins-docker --detach \
   --privileged --network jenkins --network-alias docker \
   --env DOCKER_TLS_CERTDIR=$DOCKER_TLS_CERTDIR_PATH \
   --volume jenkins-docker-certs:$jenkinsCertsVol \
@@ -37,7 +37,7 @@ docker update --restart unless-stopped jenkins-docker
 # https://hub.docker.com/repository/docker/icekimo/jenkins/general
 # No autobuild , due to dockerhub "一夜兩次郎" polocy.
 echo "Step 2: Start Jenkins BlueOcean."
-docker run --name jenkins-blueocean --rm --detach \
+docker run --name jenkins-blueocean --detach \
   --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
   --env DOCKER_CERT_PATH=$DOCKER_TLS_CERTDIR_PATH --env DOCKER_TLS_VERIFY=1 \
   --publish 8080:8080 --publish 50000:50000 \
