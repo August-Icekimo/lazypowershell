@@ -73,7 +73,7 @@ _fileList()
       export fileslist="$(pwd)/flists.csv"
     fi
   else
-    if [ -r $1 ];
+    if [ ! -r $(pwd)/$1 ];
     then
       echo "目錄清單不存在，請在-f後指定正確清單"
       exit 128 #Invalid argument to exit
@@ -112,7 +112,7 @@ then
 else
   while IFS= read -r line || [[ "$line" ]];
   do
-        echo "/usr/bin/rsync -zavuh --stats --progress \"$pathShift/$line\" \"$line\ $_dryrun" >> $scriptname
+        echo "/usr/bin/rsync -zavuh --stats --progress \"$pathShift/$line\" \"$line\" $_dryrun" >> $scriptname
       if [ "$_debug" = "TRUE" ];
       then
         echo "新增同步目錄指令:"
