@@ -17,7 +17,7 @@ _printHelp()
     # 用檔案控制要同步的目錄清單
     # 使用方式可為Cgwin / WSL 內 rsync
     # 須先建立目錄清單 flists.csv
-    echo "使用-p | --path 同步目錄的位置參數"
+    echo "使用-p | --path 同步目錄的位置參數,可以加user@IP:"
     # 同步目錄的位置參數
     # export pathShift="/mnt/d"
     echo "使用-d | --debug 打開偵錯參數"
@@ -26,8 +26,8 @@ _printHelp()
   if [ "$1" == "debug" ];
   then
   echo "反轉同步方向: $_reverseDir";
-  echo "同步目錄清單: $fileslist";
-  echo "同步目錄位置: $pathShift";
+  echo "同步目錄清單(.csv): $fileslist";
+  echo "同步目錄位置(URL): $pathShift";
   fi
 }
 
