@@ -2,16 +2,14 @@
 
 export my_nvme="/srv/nvme/jenkins"
 export DOCKER_TLS_CERTDIR_PATH="$my_nvme/certs"
-export jenkinsCertsVol="$my_nvme/certs/client"
-export jenkinsDataVol="$my_nvme/var/jenkins_home"
+export jenkinsCertsVol="/certs/client"
+export jenkinsDataVol="/var/jenkins_home"
 # Create folders for the very first day.
 if [ -d $my_nvme ];
 then 
   echo "Step 0.1: Jenkins Requried Folder Ready"
 else
   mkdir -p $DOCKER_TLS_CERTDIR_PATH
-  mkdir -p $jenkinsCertsVol
-  mkdir -p $jenkinsDataVol
 fi
 
 # Create a bridge network in Docker named "jenkins"
