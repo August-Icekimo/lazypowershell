@@ -29,7 +29,7 @@ docker run --name jenkins-docker --rm --detach \
   --volume jenkins-data:$jenkinsDataVol \
   --publish 2376:2376 docker:dind
 # Change jenkins-docker container to non-stop service
-docker update --restart unless-stopped jenkins-docker
+#docker update --restart unless-stopped jenkins-docker
 
 # Homebrew jenkins LTS + blueocean
 # https://hub.docker.com/repository/docker/icekimo/jenkins/general
