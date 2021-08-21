@@ -51,4 +51,5 @@ sudo apt update && sudo apt install -y obs-studio
 # cd amdgpu-pro-20.20-1098277-ubuntu-20.04/;ls
 # ./amdgpu-install --opencl=pal,legacy
 sudo add-apt-repository ppa:ubuntubudgie/backports && sudo apt-get update
-sudo apt install -y mojave-gtk-theme fcitx-chewing
+sudo apt install -y mojave-gtk-theme mcmojave-circle fcitx-chewing whitesur-gtk-theme whitesur-icon-theme
+sudo apt install -y gnome-disk-utility gparted
