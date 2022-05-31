@@ -41,7 +41,7 @@ docker run --name jenkins-blueocean --rm --detach \
   --publish 8080:8080 --publish 50000:50000 \
   --volume jenkins-data:$jenkinsDataVol \
   --volume jenkins-docker-certs:$jenkinsCertsVol:ro \
-  icekimo/jenkins:latest
+  jenkins/jenkins:lts-jdk11
 
 # Post Install 
 # https://www.jenkins.io/doc/book/installing/docker/#setup-wizard
