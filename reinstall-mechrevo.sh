@@ -49,16 +49,20 @@ wget https://raw.githubusercontent.com/doctormo/GimpPs/master/menurc -O ~$USERNA
 # Install OBS Studio
 sudo apt update && sudo apt install -y obs-studio
 
-# Refernce for AMD GPU Driver, for my Ryzen 7 4800H HDMI output
+# Refernce for AMD GPU Driver, for my Ryzen 7 HDMI output
 # sudo lshw -C video
-## xz -d amdgpu-pro-20.20-1098277-ubuntu-20.04.tar.xz 
-## tar xvf amdgpu-pro-20.20-1098277-ubuntu-20.04.tar 
-## cd amdgpu-pro-20.20-1098277-ubuntu-20.04/;ls
-## ./amdgpu-install --opencl=pal,legacy
-# wget https://repo.radeon.com/amdgpu-install/22.20.3/ubuntu/jammy/amdgpu-install_22.20.50203-1_all.deb
-# dpkg -i amdgpu-install_22.20.50203-1_all.deb
+# wget https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/amdgpu-install_5.4.50400-1_all.deb
+# dpkg -i amdgpu-install_5.4.50400-1_all.deb
 # amdgpu-install --usecase=graphics,opencl --opencl=rocr,legacy --vulkan=amdvlk,pro
 
 # Install Budgie macOS theme
 sudo add-apt-repository ppa:ubuntubudgie/backports && sudo apt-get update
 sudo apt install -y mojave-gtk-theme mcmojave-circle fcitx-chewing whitesur-gtk-theme whitesur-icon-theme
+
+
+##LINE Notify 發行存取權杖（開發人員用）
+export line_token=""
+function notify()
+{
+    curl -X POST -H 'Authorization: Bearer $line_token' https://notify-api.line.me/api/notify -F "message=$*"
+}
