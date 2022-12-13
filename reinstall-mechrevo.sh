@@ -16,10 +16,10 @@ echo "Show current KVM status:" && kvm-ok
 # sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 sudo apt install -y grub-customizer 
 # # sudo add-apt-repository -r ppa:danielrichter2007/grub-customizer
-sudo apt install -y python python3 wget curl
+sudo apt install -y python2 python3 wget curl
 # Gnome tools & power management
 sudo apt install -y gnome-disk-utility gparted pm-utils
-# sudo apt install libguestfs-tools
+sudo apt install libguestfs-tools python3-guestfs
 # sudo apt install pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware
 
 # Install VSCode & Git
@@ -57,8 +57,8 @@ sudo apt update && sudo apt install -y obs-studio
 
 # Install Budgie macOS theme
 sudo add-apt-repository ppa:ubuntubudgie/backports && sudo apt-get update
-sudo apt install -y mojave-gtk-theme mcmojave-circle fcitx-chewing whitesur-gtk-theme whitesur-icon-theme
-
+sudo apt install -y mojave-gtk-theme mcmojave-circle whitesur-gtk-theme whitesur-icon-theme
+# sudo apt install -y fcitx-chewing
 
 ##LINE Notify 發行存取權杖（開發人員用）
 export line_token=""
