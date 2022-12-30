@@ -1,15 +1,16 @@
-ï»¿@ECHO OFF
+@ECHO OFF
 TITLE "Remove Oracle Java, 8"
 ECHO Cleanup Running Java Update process
-ECHO "é–‹å§‹æ¸…é™¤Oracle Java 8"
-ECHO "é¦–å…ˆåœæ­¢èƒŒæ™¯æ›´æ–°ç¨‹å¼"
+ECHO ==== 00 ¶}©l²M°£Oracle Java 8 ====
+ECHO ==== 01 ­º¥ı°±¤î­I´º§ó·sµ{¦¡        ====
 wmic process where "name like 'jucheck%%.exe'" delete /nointeractive
 wmic process where "name like 'jusched%%.exe'" delete /nointeractive
 ECHO Cleanup Runing Java instance, like java, javaw ...
-ECHO "åœæ­¢Javaç¨‹å¼"
+ECHO ==== 02 °±¤îJavaµ{¦¡          ====
 wmic process where "name like 'java%%'" delete /nointeractive
-ECHO "ç­‰æ‰€æœ‰javaç¨‹å¼çµ‚æ­¢ï¼Œå¾ŒçºŒå°‡ç§»é™¤Oracle Java 8 æ‰€æœ‰ç‰ˆæœ¬"
-ECHO "Wait 10 seconds to remove Oracle Java 8." & TIMEOUT /T 10 /NOBREAK 
+ECHO ==== 03 µ¥10¬í²×¤î©Ò¦³javaµ{¦¡¡A«áÄò±N²¾°£Oracle Java 8 ©Ò¦³ª©¥» 
+ECHO ==== 03 Wait 10 seconds to remove Oracle Java 8.  & TIMEOUT /T 10 /NOBREAK 
 REM Uninstall Oracle Java 8 by select product registry name.
+ECHO ==== 04 ²¾°£Javaµ{¦¡          ====
 wmic product where "name like 'Java 8%%'" call uninstall /nointeractive
-ECHO "å®Œæˆç§»é™¤å·¥ä½œ"
+ECHO ==== 05 §¹¦¨²¾°£¤u§@            ====
