@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  drupal:
+    image: drupal:latest
+    ports:
+      - 8080:80
+    volumes:
+      - drupal_data:/var/www/html
+    restart: always
+
+  postgres:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    shm_size: 256M
+    environment:
+      POSTGRES_PASSWORD: gis1webdb
+      POSTGRES_DB: gisweb
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db_data: /var/lib/postgresql/data/pgdata
+    restart: always
+
+volumes:
+  drupal_data:
+    external: true
+  db_data:
+    external: true  
