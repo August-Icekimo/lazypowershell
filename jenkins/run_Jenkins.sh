@@ -38,7 +38,7 @@ docker run --name jenkins-docker --rm --detach \
 # if previous step return 0, then change to "unless-stopped"
 if [ $? -eq 0 ]; 
 then
-  docker update --restart unless-stopped jenkins-docker
+  docker update --restart=unless-stopped jenkins-docker
 else
   echo "Jenkins Docker IN Docker Failed, Please Check. Jenkins容器/DIND啟動失敗"
 fi
@@ -57,6 +57,12 @@ docker run --name jenkins-blueocean --rm --detach \
   --volume jenkins-data:$jenkinsDataVol \
   --volume jenkins-docker-certs:$jenkinsCertsVol:ro \
   jenkins/jenkins:lts-jdk11
+
+# if container jenkins-blueocean return 0, then change to "unless-stopped"
+if [ $? -eq 0 ];
+then
+  docker update --restart=unless-stopped jenkins-blueocean
+fi
 
 # Post Install Refs
 echo "請參考官方安裝完畢後指南進行下一步"
