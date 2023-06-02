@@ -9,8 +9,10 @@ sudo systemctl stop nginx.service
 fi
 
 # update certificate
-echo "Updating certificate 替換certificate"
+echo "Updating certificate 替換 NODE certificate"
 sudo pvecm updatecerts --force
+echo "Updating ACME certificate 替換 ACME certificate"
+sudo pvenode acme cert renew --force
 
 # start nginx service
 echo "Starting nginx service 開始nginx服務"
