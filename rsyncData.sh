@@ -1,15 +1,24 @@
-#!/bin/bash
-# 變數宣告
-export fileslist=""
-export pathShift=""
-_reverseDir=""
-_debug=""
-_dryrun=""
+#!/bin/sh
+# 產生逐行的rsync指令行，供排程使用。
+# 因為rsync特性，所以建議加大排程時間，盡量不需要做執行個體檢查控制
+# Define variables 變數宣告
+# check if fileslist variable is set or default valuees "flists.csv"
+export fileslist==${PORTAINER_DATA:-flists.csv}
+# check if pathShift variable is set or default valuees "$pwd"
+export pathShift==${PORTAINER_DATA:-$pwd}
+# check if _reverseDir variable is set or default valuees "FALSE"
+export _reverseDir==${PORTAINER_DATA:-FALSE}
+# check if _debug variable is set or default valuees "FALSE"
+export _debug==${PORTAINER_DATA:-FALSE}
+# check if _dryrun variable is set or default valuees "FALSE"
+export _dryrun==${PORTAINER_DATA:-FALSE}
+
+# rsync -zavH --exclude="**/@eaDir" --exclude="**/*recycle*" --exclude="**/.sync*" --stats --progress -e "ssh -p6622" /volume1/文件/_PMO各年度教育訓練教材 iceicebaby.duckdns.org:/volume1/MOI_Sync/ --dry-run
 
 # 前段函式宣告
 _printHelp()
 {
-  #印出Debug說明或是幫助文字
+  # 印出Debug說明或是幫助文字
   if [ "$1" == "help" ];
   then
     echo "使用-r | --reverse 轉換同步檔案的方向"
