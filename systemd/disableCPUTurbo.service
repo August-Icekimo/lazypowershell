@@ -1,0 +1,19 @@
+[Unit]
+Description=Disable
+After=network.target
+
+[Service]
+Type=simple
+# 啟動服務後，執行的指令
+ExecStart=/usr/sbin/DisableCPUTurbo.sh
+# 停止服務後，執行的指令
+# ExecStopPost=/opt/your_command
+# 重新載入服務指令
+# ExecReload=/opt/your_command
+# 服務終止時自動重新啟動
+Restart=on-abort
+# 設定服務在 Syslog 中的名稱
+# SyslogIdentifier=your-server
+
+[Install]
+WantedBy=multi-user.target
