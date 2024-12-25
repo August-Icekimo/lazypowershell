@@ -7,7 +7,7 @@ if [ -x "$(command -v lscpu)" ]; then
     if [ "$modelname" = *"Intel"* ]; then
         echo "Disabling Intel CPU Turbo Boost"
         echo "passive" > /sys/devices/system/cpu/intel_pstate/status
-        echo "0" > /sys/devices/system/cpu/intel_pstate/no_turbo
+        echo "1" > /sys/devices/system/cpu/intel_pstate/no_turbo
     elif [ "$modelname" = *"AMD"* ]; then
         echo "Disabling AMD CPU Turbo Boost"
         if [ -e /sys/devices/system/cpu/amd_pstate/status ]; then
