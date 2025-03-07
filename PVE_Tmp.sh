@@ -61,3 +61,14 @@ echo $insertLine3
 # restart pveproxy service
 echo "Restart PVE Proxy service"
 sudo systemctl restart pveproxy
+
+# Generate diff files
+diff ${NODES_PM}.old $NODES_PM > ${NODES_PM}.diff
+diff ${pveManagerLib_JS}.old $pveManagerLib_JS > ${pveManagerLib_JS}.diff
+
+# Output the diff files
+echo "Diff for $NODES_PM:"
+cat ${NODES_PM}.diff
+
+echo "Diff for $pveManagerLib_JS:"
+cat ${pveManagerLib_JS}.diff
