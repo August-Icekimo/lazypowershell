@@ -10,10 +10,21 @@ export ORG1='PVE::pvecfg::version_text();'
 export ORG2='widget.pveNodeStatus'
 export ORG3='pveversion',
 
-# find $ORG is which line of $NODES.PM
-# put shell "cat $NODES_PM | grep -n $ORG | cut -d: -f1" result into variable insertLine
-insertLine=$(cat $NODES_PM | grep -n $ORG1 | cut -d: -f1)
- echo $insertLine
+# Backup original files
+cp $NODES_PM ${NODES_PM}.old
+cp $pveManagerLib_JS ${pveManagerLib_JS}.old
+
+# find $ORG1 is which line of $NODES_PM, store in $insertLine
+insertLine=$(cat $NODES_PM | grep -n "$ORG1" | cut -d: -f1)
+echo $insertLine
+
+# find $ORG2 is which line of $pveManagerLib_JS, store in $insertLine2
+insertLine2=$(cat $pveManagerLib_JS | grep -n "$ORG2" | cut -d: -f1)
+echo $insertLine2
+
+# find $ORG3 is which line of $pveManagerLib_JS, store in $insertLine3
+insertLine3=$(cat $pveManagerLib_JS | grep -n "$ORG3" | cut -d: -f1)
+echo $insertLine3
 
 cat << N_PM >> $NODES_PM_ADD1
 $res->{thermalstate} = `sensors`;
