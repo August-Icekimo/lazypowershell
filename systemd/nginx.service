@@ -1,0 +1,71 @@
+# 變數宣告
+# -----------------------------------------------------------------------------
+# 服務名稱
+SERVICE_NAME="nginx"
+# 服務描述
+SERVICE_DESCRIPTION="A high performance web server and a reverse proxy server"
+# 執行檔路徑 (通常 Nginx 安裝後的可執行檔路徑)
+EXEC_START_PATH="/usr/sbin/nginx"
+# 設定檔路徑
+CONFIG_FILE_PATH="/etc/nginx/nginx.conf"
+# Master Process PID 檔案路徑
+PID_FILE_PATH="/run/nginx.pid"
+# 重新載入命令
+EXEC_RELOAD_COMMAND="/bin/kill -HUP $MAINPID"
+# 停止命令 (Nginx 通常會自行關閉)
+EXEC_STOP_COMMAND="/bin/kill -TERM $MAINPID"
+# 服務類型 (forking 表示主程序會 fork 出子程序，父程序隨後退出)
+SERVICE_TYPE="forking"
+# 重新啟動策略 (on-failure 表示只有在服務失敗時才重新啟動)
+RESTART_POLICY="on-failure"
+# 重新啟動延遲時間
+RESTART_GRACE_PERIOD="30s"
+# 啟用限制
+LIMIT_NOFILE="65535"
+# -----------------------------------------------------------------------------
+
+# 確保 /etc/systemd/system/ 目錄存在
+echo "正在檢查並建立 /etc/systemd/system/ 目錄..."
+mkdir -p /etc/systemd/system/
+
+# 建立 Nginx systemd 服務設定檔
+echo "正在建立 ${SERVICE_NAME}.service 設定檔..."
+cat << EOF | sudo tee /etc/systemd/system/${SERVICE_NAME}.service
+[Unit]
+Description=${SERVICE_DESCRIPTION}
+After=network.target
+
+[Service]
+Type=${SERVICE_TYPE}
+PIDFile=${PID_FILE_PATH}
+ExecStartPre=${EXEC_START_PATH} -t -q -c ${CONFIG_FILE_PATH}
+ExecStart=${EXEC_START_PATH} -c ${CONFIG_FILE_PATH}
+ExecReload=${EXEC_RELOAD_COMMAND}
+ExecStop=${EXEC_STOP_COMMAND}
+PrivateTmp=true
+Restart=${RESTART_POLICY}
+RestartSec=${RESTART_GRACE_PERIOD}
+LimitNOFILE=${LIMIT_NOFILE}
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "${SERVICE_NAME}.service 設定檔已建立完成！"
+
+# 重新載入 systemd 設定
+echo "正在重新載入 systemd 設定..."
+sudo systemctl daemon-reload
+
+# 啟用 Nginx 服務 (使其在開機時自動啟動)
+echo "正在啟用 ${SERVICE_NAME} 服務..."
+sudo systemctl enable ${SERVICE_NAME}
+
+echo "你可以使用以下指令啟動 Nginx 服務："
+echo "sudo systemctl start ${SERVICE_NAME}"
+echo "你可以使用以下指令檢查 Nginx 服務狀態："
+echo "sudo systemctl status ${SERVICE_NAME}"
+echo "你可以使用以下指令重新載入 Nginx 設定："
+echo "sudo systemctl reload ${SERVICE_NAME}"
+echo "你可以使用以下指令停止 Nginx 服務："
+echo "sudo systemctl stop ${SERVICE_NAME}"
