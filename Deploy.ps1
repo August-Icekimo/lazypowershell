@@ -63,7 +63,14 @@ function PackageUpZip {
         if (!(Test-Path -Path $TargetDir)) {
             New-Item -Path $TargetDir -ItemType Directory | Out-Null
         }
-        Copy-Item -Recurse -Path $InputFileName -Destination $TargetDir
+        
+        # For Java files, copy all class files including inner classes
+        if ($InputFile -match '\.java$') {
+            $ClassFilePattern = $InputFileName.Substring(0, $InputFileName.Length - 6) + "*.class"
+            Copy-Item -Path $ClassFilePattern -Destination $TargetDir
+        } else {
+            Copy-Item -Recurse -Path $InputFileName -Destination $TargetDir
+        }
     }
     # Loop through each folder in $TEMPDIR and zip it
     $PACKS = (Get-ChildItem -Directory -Path $TEMPDIR)
@@ -149,7 +156,14 @@ if ($deploy -or $MyInvocation.MyCommand.Name -eq "Deploy.ps1") {
                 if (!(Test-Path -Path $TargetDir)) {
                     New-Item -Path $TargetDir -ItemType Directory | Out-Null
                 }
-                Copy-Item -Recurse -Path $InputFileName -Destination $TargetDir
+                
+                # For Java files, copy all class files including inner classes
+                if ($InputFile -match '\.java$') {
+                    $ClassFilePattern = $InputFileName.Substring(0, $InputFileName.Length - 6) + "*.class"
+                    Copy-Item -Path $ClassFilePattern -Destination $TargetDir
+                } else {
+                    Copy-Item -Recurse -Path $InputFileName -Destination $TargetDir
+                }
             }
             # Loop through each folder in $TEMPDIR and zip it
             $PACKS = (Get-ChildItem -Directory -Path $TEMPDIR)
@@ -167,14 +181,16 @@ if ($deploy -or $MyInvocation.MyCommand.Name -eq "Deploy.ps1") {
             Remove-Item -Path $TEMPDIR -Recurse -Force
         }
         
-        BackUpClass # Not functional yet
+        BackUpClass # Need validation.
 
         verifyMD5
         Write-Host "Extracting...$ZIP"
         # stop tomcat server
-        Stop-Service -Name "Tomcat9"
+        # FIXME to real tomcat service name
+        $tomcat_service_name = "Tomcat9"
+        Stop-Service -Name $tomcat_service_name 
         Expand-Archive -Path $ZIP -DestinationPath . -Force
-        Start-Service -Name "Tomcat9"
+        Start-Service -Name $tomcat_service_name
         Remove-Item -Path $ZIP
     }
 }
