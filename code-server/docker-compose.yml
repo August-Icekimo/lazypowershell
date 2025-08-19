@@ -1,0 +1,21 @@
+---
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Taipei
+      - PASSWORD=Ihave@secretHere #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=Ihave@secretHere #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code.icekimo.idv.tw #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+      - PWA_APPNAME=code-server #optional
+    volumes:
+      - /path/to/code-server/config:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
