@@ -1,0 +1,49 @@
+#!/bin/sh
+# 讓腳本在遇到錯誤時立即停止執行
+set -e
+
+# --- 變數宣告區 ---
+# 映像檔名稱，需要與上一步驟一致
+IMAGE_NAME="my-awesome-code-server"
+
+# 容器名稱
+CONTAINER_NAME="my_dev_container"
+
+# 你的專案目錄路徑
+PROJECT_PATH="/home/icekimo/Projects/my_awesome_project"
+
+# 設定 Code Server 密碼
+# 建議從環境變數讀取密碼，避免將密碼明文寫在腳本中
+# 如果環境變數 CODE_SERVER_PASSWORD 未設定，則使用預設值
+CODE_SERVER_PASSWORD="${CODE_SERVER_PASSWORD:-MyStrongPassword@7677}"
+
+# 本機端口
+HOST_PORT="8080"
+
+# --- 執行指令 ---
+echo "正在檢查專案目錄是否存在: ${PROJECT_PATH}"
+if [ ! -d "${PROJECT_PATH}" ]; then
+    echo "專案目錄不存在，正在為您建立..."
+    mkdir -p "${PROJECT_PATH}"
+    echo "目錄已建立。"
+fi
+
+echo "正在檢查舊容器 ${CONTAINER_NAME} 是否存在..."
+if [ -n "$(docker ps -a -q -f name=${CONTAINER_NAME})" ]; then
+    echo "發現舊的容器，正在停止並移除..."
+    docker stop "${CONTAINER_NAME}" || true
+    docker rm "${CONTAINER_NAME}" || true
+fi
+
+echo "正在啟動新的 code-server 容器..."
+docker run \
+    --name "${CONTAINER_NAME}" \
+    -d \
+    -p ${HOST_PORT}:8080 \
+    -v "${PROJECT_PATH}:/home/coder/project" \
+    --restart unless-stopped \
+    -e PASSWORD="${CODE_SERVER_PASSWORD}" \
+    "${IMAGE_NAME}"
+
+echo "容器 ${CONTAINER_NAME} 已成功啟動！"
+echo "您可以透過 http://localhost:${HOST_PORT} 存取。"
