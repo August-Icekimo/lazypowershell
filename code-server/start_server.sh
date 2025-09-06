@@ -114,7 +114,6 @@ if [ ! -f "$INSTALLED_FLAG_FILE" ]; then
             INSTALL_SUCCESS=1 # 標記為失敗
         fi
     done
-    
     # 在安裝完成後，創建標記檔案，標示初始化已完成
     if [ ${INSTALL_SUCCESS} -eq 0 ]; then
         echo "插件安裝成功！正在創建標記檔案..."
