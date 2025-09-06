@@ -3,7 +3,7 @@ FROM codercom/code-server:ubuntu
 
 # 設定環境變數，避免apt-get的互動式設定
 ENV DEBIAN_FRONTEND=noninteractive
-
+USER root
 # 安裝 Java、Python、Go、PowerShell 等環境
 RUN apt-get update && \
     apt-get upgrade -y && \
