@@ -27,6 +27,9 @@ CONTAINER_PORT="8080"
 
 # 這是你從瀏覽器連線時使用的端口
 HOST_PORT="8080"
+# 這是AI擴充套件所使用的動態埠號範圍
+# 為了確保所有相關服務都能順利運作，我們映射一個足夠大的範圍
+DYNAMIC_PORT_RANGE="30000-50000"
 
 # 找出你當前使用者的UID和GID，用於容器內的權限映射
 USER_ID=$(id -u)
@@ -35,39 +38,24 @@ echo "偵測到 UID: ${USER_ID}, GID: ${GROUP_ID}"
 
 # --- 插件清單 (HereDoc) ---
 # 這個清單只會在初次設定時使用
-EXTENSION_LIST="amazonwebservices.amazon-q-vscode
-cweijan.vscode-office
+EXTENSION_LIST="cweijan.vscode-office
 docker.docker
 dotjoshjohnson.xml
 esbenp.prettier-vscode
-fyzhu.git-pretty-graph
-github.copilot
-github.copilot-chat
-google.gemini-cli-vscode-ide-companion
-google.geminicodeassist
-madhavd1.javadoc-tools
 mechatroner.rainbow-csv
 mk12.better-git-line-blame
 ms-azuretools.vscode-containers
 ms-ceintl.vscode-language-pack-zh-hant
-ms-mssql.data-workspace-vscode
-ms-mssql.mssql
-ms-mssql.sql-bindings-vscode
-ms-mssql.sql-database-projects-vscode
 ms-python.debugpy
 ms-python.isort
 ms-python.python
 ms-python.vscode-pylance
-ms-vscode-remote.remote-containers
 ms-vscode.hexeditor
 ms-vscode.powershell
 redhat.java
 rooveterinaryinc.roo-cline
 shd101wyy.markdown-preview-enhanced
-taoklerks.poor-mans-t-sql-formatter-vscode
 tomoki1207.pdf
-visualstudioexptteam.intellicode-api-usage-examples
-visualstudioexptteam.vscodeintellicode
 vscjava.vscode-gradle
 vscjava.vscode-java-debug
 vscjava.vscode-java-dependency
@@ -138,6 +126,7 @@ docker run \
     --name "${CONTAINER_NAME}" \
     -d \
     -p ${HOST_PORT}:${CONTAINER_PORT} \
+    -p ${DYNAMIC_PORT_RANGE}:${DYNAMIC_PORT_RANGE} \
     -v "${PROJECT_PATH}:/home/coder/project" \
     --restart unless-stopped \
     -v "${VSCODE_PERSISTENT_PATH}:/home/coder" \
