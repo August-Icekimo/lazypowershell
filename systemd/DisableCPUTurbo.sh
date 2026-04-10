@@ -1,26 +1,34 @@
 #!/bin/sh
+# Default action is disable if no argument is provided
+ACTION=${1:-disable}
+
 # check if system has lscpu command
 if [ -x "$(command -v lscpu)" ]; then
     # get CPU model name
     modelname=$(lscpu | awk -F: '/^Model name:/ {print $2}')
+    
     # if modelname contains "Intel"
     if echo "$modelname" | grep -qE "Intel" ; then
-        echo "Disabling Intel CPU Turbo Boost"
-        echo "passive" > /sys/devices/system/cpu/intel_pstate/status
-        echo "1" > /sys/devices/system/cpu/intel_pstate/no_turbo
-    elif echo "$modelname" | grep -qE "AMD" ; then
-        echo "Disabling AMD CPU Turbo Boost"
-        if [ -e /sys/devices/system/cpu/amd_pstate/status ]; then
-          echo "passive" > /sys/devices/system/cpu/amd_pstate/status
-            if [ -e /sys/devices/system/cpu/cpufreq/boost ]; then
-                echo "0" > /sys/devices/system/cpu/cpufreq/boost
-            # else
-            #     echo "/sys/devices/system/cpu/cpufreq/boost not found"
-            fi
+        if [ "$ACTION" = "enable" ]; then
+            echo "Enabling Intel CPU Turbo Boost"
+            [ -e /sys/devices/system/cpu/intel_pstate/status ] && echo "active" > /sys/devices/system/cpu/intel_pstate/status
+            [ -e /sys/devices/system/cpu/intel_pstate/no_turbo ] && echo "0" > /sys/devices/system/cpu/intel_pstate/no_turbo
         else
-            echo "/sys/devices/system/cpu/amd_pstate/status not found"
+            echo "Disabling Intel CPU Turbo Boost"
+            [ -e /sys/devices/system/cpu/intel_pstate/status ] && echo "passive" > /sys/devices/system/cpu/intel_pstate/status
+            [ -e /sys/devices/system/cpu/intel_pstate/no_turbo ] && echo "1" > /sys/devices/system/cpu/intel_pstate/no_turbo
         fi
-        echo "0" > /sys/devices/system/cpu/cpufreq/boost
+    # if modelname contains "AMD"
+    elif echo "$modelname" | grep -qE "AMD" ; then
+        if [ "$ACTION" = "enable" ]; then
+            echo "Enabling AMD CPU Turbo Boost"
+            [ -e /sys/devices/system/cpu/amd_pstate/status ] && echo "active" > /sys/devices/system/cpu/amd_pstate/status
+            [ -e /sys/devices/system/cpu/cpufreq/boost ] && echo "1" > /sys/devices/system/cpu/cpufreq/boost
+        else
+            echo "Disabling AMD CPU Turbo Boost"
+            [ -e /sys/devices/system/cpu/amd_pstate/status ] && echo "passive" > /sys/devices/system/cpu/amd_pstate/status
+            [ -e /sys/devices/system/cpu/cpufreq/boost ] && echo "0" > /sys/devices/system/cpu/cpufreq/boost
+        fi
     fi
 else
     echo "lscpu command not found, that's rare."
