@@ -3,18 +3,15 @@ Description=Disable CPU Turbo Boost
 After=network.target
 
 [Service]
-Type=simple
+Type=oneshot
+RemainAfterExit=yes
 # 啟動服務後，執行的指令
-ExecStartPre=/bin/sh -c '[ -x /usr/sbin/DisableCPUTurbo.sh ]'
-ExecStart=/usr/sbin/DisableCPUTurbo.sh
+ExecStartPre=/bin/sh -c '[ -x /home/icekimo/gitWrk/lazypowershell/systemd/DisableCPUTurbo.sh ]'
+ExecStart=/home/icekimo/gitWrk/lazypowershell/systemd/DisableCPUTurbo.sh disable
 # 停止服務後，執行的指令
-# ExecStopPost=/opt/your_command
-# 重新載入服務指令
-# ExecReload=/opt/your_command
+ExecStop=/home/icekimo/gitWrk/lazypowershell/systemd/DisableCPUTurbo.sh enable
 # 服務終止時自動重新啟動
 Restart=on-abort
-# 設定服務在 Syslog 中的名稱
-# SyslogIdentifier=DisableCPUTurboBoost-Katharine
 
 [Install]
 WantedBy=multi-user.target
